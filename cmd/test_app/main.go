@@ -9,6 +9,5 @@ func main() {
 }
 
 func handle(info router.Request) router.Response {
-
-	return router.Response{Id: "1", Result: 1}
+	return router.Response{Id: info.Id, Result: info.Method, Error: &router.Error{Code: -1, Data: info.Params}}
 }

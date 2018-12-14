@@ -1,11 +1,14 @@
 package main
 
 import (
+	"net/http"
+
 	"github.com/Gekctek/JsonRpc-Go/pkg/router"
 )
 
 func main() {
-	router.Run("/", 8000, handle)
+	http.Handle("/", router.BuildHttpHandler(handle))
+	http.ListenAndServe(":8000", nil)
 }
 
 func handle(info router.Request) router.Response {
